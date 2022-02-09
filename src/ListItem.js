@@ -6,9 +6,8 @@ class ListItem extends React.Component{
         super(props);
         this.deleteItem = this.deleteItem.bind(this);
     }
-    deleteItem(itemToDelete,e){
+    deleteItem(itemToDelete){
         this.props.deleteItem(itemToDelete);
-        e.preventDefault();
     }
     render(){
         return (
