@@ -35,11 +35,11 @@ class App extends React.Component{
         });
     }
     doneItem = (itemToDone) => {
-        const element = document.getElementById(itemToDone);
+        const element = document.getElementById(itemToDone.replace('check',''));
         element.style.textDecoration = "line-through";
     }
     unDoneItem = (itemToDone) => {
-        const element = document.getElementById(itemToDone);
+        const element = document.getElementById(itemToDone.replace('check',''));
         element.style.textDecoration = "none";
     }
     render(){

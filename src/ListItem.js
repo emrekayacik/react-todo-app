@@ -10,9 +10,8 @@ class ListItem extends React.Component{
         this.props.deleteItem(itemToDelete);
     }
     doneItem = (itemToDone) => {
-        const checked = document.getElementById(itemToDone).childNodes[1].childNodes[0].checked;
-        
-
+        const element = document.getElementById(itemToDone);
+        const checked = element.checked;
         if(checked)
             this.props.doneItem(itemToDone);
         
@@ -21,12 +20,13 @@ class ListItem extends React.Component{
         
     }
     render(){
+        const idx = this.props.index;
         return (
             <li id={this.props.index} value={this.props.index}>
                 {this.props.item}
                 <div style={{float: "right"}}>
-                <input id={this.props.index} onChange={() => this.doneItem(this.props.index)} type="checkbox" className="form-check-input" id="checkDone" />
-               <label className="form-check-label mr-2" htmlFor="checkDone">Done</label>
+                <input id={"check"+idx} onChange={() => this.doneItem("check"+idx)} type="checkbox" className="form-check-input" />
+               <label className="form-check-label mr-2" htmlFor={"check"+idx}>Done</label>
                  <button onClick={() => this.deleteItem(this.props.item)} className="btn btn-outline-danger btn-sm">Delete</button>
                 </div>
                 </li>
