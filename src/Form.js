@@ -9,11 +9,19 @@ class Form extends React.Component{
 
     onFormSubmit(e) {
         const itemToAdd = e.target.tbxAddItem.value.trim();
-        console.log(itemToAdd);
-        this.props.onFormSubmit(itemToAdd);
+        if(itemToAdd && itemToAdd !== "" && itemToAdd !== undefined && itemToAdd !== null){
+            this.props.onFormSubmit(itemToAdd);
+            document.getElementById('tbxAddItem').value = '';
+        }
+        else{
+            alert("Please enter a valid ToDoItem!");
+        }
         e.preventDefault();
-        document.getElementById('tbxAddItem').value = '';
     }
+    clearItems = (e) => {
+        this.props.clearItems();
+        e.preventDefault();
+    };
     render(){
         return (
                 <div>
@@ -23,6 +31,7 @@ class Form extends React.Component{
                                     <input type="text" className="form-control" id="tbxAddItem" placeholder="Enter an item" />
                                 </div>
                                 <button type="submit" className="btn btn-primary">Insert</button>
+                                <button onClick={this.clearItems} className="btn btn-danger ml-2">Clear Items</button>
                         </form>
                 </div>);
     }

@@ -29,12 +29,25 @@ class App extends React.Component{
             list: newList
         });
     }
+    clearItems = () => {
+        this.setState({
+            list : []
+        });
+    }
+    doneItem = (itemToDone) => {
+        const element = document.getElementById(itemToDone);
+        element.style.textDecoration = "line-through";
+    }
+    unDoneItem = (itemToDone) => {
+        const element = document.getElementById(itemToDone);
+        element.style.textDecoration = "none";
+    }
     render(){
         return (
             <div className="container text-center app-header" >
                 <Header title={this.state.title}  />
-                <List deleteItem={this.deleteItem} list={this.state.list} />
-                <Form onFormSubmit={this.onFormSubmit} />
+                <List unDoneItem={this.unDoneItem} doneItem={this.doneItem} deleteItem={this.deleteItem} list={this.state.list} />
+                <Form clearItems={this.clearItems} onFormSubmit={this.onFormSubmit} />
             </div>
         );
     }
