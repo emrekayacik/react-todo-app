@@ -9,11 +9,22 @@ class App extends React.Component{
         super(props);
         this.state = {
             title: 'Welcome To TodoApp!',
-            list: ['item 1','item 2','item3']
+            list: []
         }
         this.onFormSubmit= this.onFormSubmit.bind(this);
         this.deleteItem= this.deleteItem.bind(this);
 
+    }
+    componentDidMount(){
+        const json = localStorage.getItem('list');
+        const obj = JSON.parse(json);
+        this.setState({
+            list: obj
+        })
+    }
+    componentDidUpdate(prevProps,prevState){
+        const json = JSON.stringify(this.state.list);
+        localStorage.setItem('list',json);
     }
     onFormSubmit(itemToAdd){
         const newList = this.state.list;
